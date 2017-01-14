@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { Component }  from 'react';
+import { render } from 'react-dom';
 
-/*
- * Note: This is kept as a container-level component,
- *  i.e. We should keep this as the container that does the data-fetching
- *  and dispatching of actions if you decide to have any sub-components.
- */
-const Dashboard = () => <div>Welcome to the Dasboard. Stay tuned...</div>;
+import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
+ 
+export default function Dashboard (props) {
+  return (
+    <section style={{height: "100%"}}>
+      <GoogleMapLoader
+        containerElement={
+          <div
+            {...props.containerElementProps}
+            style={{
+              height: "100%",
+            }}
+          />
+        }
+        googleMapElement={
+          <GoogleMap
+            ref={(map) => console.log(map)}
+            defaultZoom={3}
+            defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+            onClick={props.onMapClick}
+          >
+            {props.markers.map((marker, index) => {
+              return (
+                <Marker
+                  {...marker}
+                  onRightclick={() => props.onMarkerRightclick(index)} />
+              );
+            })}
+          </GoogleMap>
+        }
+      />
+    </section>
+  );
+}
 
-export default Dashboard;
+// export default (Dashboard);

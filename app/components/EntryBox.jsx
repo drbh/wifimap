@@ -17,7 +17,7 @@ const EntryBox = ({onEntryChange, onEntrySave, topic}) => {
       <TopicTextInput
         className={cx('input')}
         value={topic}
-        placeholder="Suggest a hackday idea . . ."
+        placeholder="Suggest a hackday idea . . . "
         onEntryChange={onEntryChange}
         onEntrySave={onEntrySave} />
     </div>
